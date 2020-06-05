@@ -22,6 +22,7 @@ public class OneFragment extends Fragment {
 
     private OneViewModel mViewModel;
     private ImageView mImageView;
+    private Button mButton;
 
 
     public static OneFragment newInstance() {
@@ -33,6 +34,7 @@ public class OneFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.one_fragment,container,false);
         mImageView = view.findViewById(R.id.imageView);
+        mButton = view.findViewById(R.id.button);
         return view;
     }
 
@@ -55,6 +57,15 @@ public class OneFragment extends Fragment {
             }
         });
 
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float f = mImageView.getRotation();
+                f = f%360;
+                objectAnimator.setFloatValues(f,0);
+                objectAnimator.start();
+            }
+        });
     }
 
 }
